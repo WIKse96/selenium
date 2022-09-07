@@ -1,10 +1,23 @@
+from OpenFileWithData import OpenFileWithData
 from seartDEV_TryLogin import TryLogin
+
+path = OpenFileWithData("login.json")
+
+loginInJSON = path.open()
 
 websiteToTest = 'https://dev321.seart.pl/'
 accountUrl = 'https://dev321.seart.pl/customer/account/'
-testDatas_1 = TryLogin(1, 'wiktor.cwiertnia.seart@gmail.com', 'Test123*', 'wiktor TEST!', websiteToTest, accountUrl)
-testDatas_2 = TryLogin(2, 'wiktor.cwiertnia@seart.pl', 'Test123*', 'wiktor TEST', websiteToTest, accountUrl)
 
-testDatas_2.login()
-testDatas_1.login()
+
+def datasFromJson():
+    for loginData in loginInJSON['loginDatas']:
+        email = loginData['loginEmail']
+        loginPass = loginData['loginPass']
+        nickName = loginData['nickName']
+        testDatas = TryLogin(1, email, loginPass, nickName, websiteToTest, accountUrl)
+        testDatas.login()
+
+
+datasFromJson()
+
 
