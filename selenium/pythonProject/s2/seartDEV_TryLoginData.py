@@ -1,6 +1,6 @@
 from OpenFileWithData import OpenFileWithData
 from seartDEV_TryLogin import TryLogin
-# from seartDEV_makeOrder import MakeOrder
+from seartDEV_makeOrder import MakeOrder
 
 path = OpenFileWithData("login.json")
 
@@ -22,7 +22,7 @@ def datasFromJson():
         if counter == 1:
 
             #skladanie zamówienia
-
+            MakeOrder('https://dev321.seart.pl/biurko-sosnowe-woskowane-rustyk.html').makeOrder()
             print("counter", counter)
         else:
             pass
